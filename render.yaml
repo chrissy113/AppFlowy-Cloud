@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: appflowy-cloud
+    env: docker
+    buildCommand: docker build -t appflowy-cloud .
+    startCommand: docker run appflowy-cloud
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://appflowy_user:GNXLf2npSVDpQQhEDbLjiV1m6MnyLjGA@dpg-ct3dap5umphs73drmmdg-a/appflowy_rfi0
+      
+      - key: REDIS_URL
+        value: redis://red-ct3fl7rtq21c738rdb4g:6379
+      
+      - key: STORAGE_TYPE
+        value: github
+      
+      - key: GITHUB_TOKEN
+        sync: false  # 这表示是一个敏感值，需要在Render控制台手动设置
+      
+      - key: GITHUB_REPO
+        value: your_username/AppFlowy-Cloud
+      
+      # AWS相关配置可以留空
+      - key: AWS_ACCESS_KEY_ID
+        value: ""
+      - key: AWS_SECRET_ACCESS_KEY
+        value: ""
+      - key: AWS_DEFAULT_REGION
+        value: ""
